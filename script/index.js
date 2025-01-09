@@ -1,6 +1,5 @@
 let humanScore = 0;
 let computerScore = 0;
-let scores = `SCORES: YOU: ${humanScore}, CPU: ${computerScore}`
 
 function getComputerChoice() {
     let choice = Math.floor(Math.random()*3)+1;
@@ -15,32 +14,35 @@ function getComputerChoice() {
 
 function playRound(computerChoice, humanChoice) {
     if (computerChoice == humanChoice ) {
-        div.textContent = "Woah, it's a tie!"
+        comment.textContent = "Woah, it's a tie!"
     } else if (computerChoice == "rock" && humanChoice == "paper") {
-        div.textContent = "you win duder, your paper suffocated the enemies rock";
+        comment.textContent = "you win duder, your paper suffocated the enemies rock";
         ++humanScore;
     } else if (computerChoice == "paper" && humanChoice == "scissors") {
-        div.textContent = "your valiant scissors defended your honor against the enemies most foul paper";
+        comment.textContent = "your valiant scissors defended your honor against the enemies most foul paper";
         ++humanScore;
     } else if (computerChoice == "scissors" && humanChoice == "rock") {
-        div.textContent = "your rock crushes their scissors' skull to dust";
+        comment.textContent = "your rock crushes their scissors' skull to dust";
         ++humanScore;
     } else {
+        comment.textContent = "They won... wtf tho...";
         ++computerScore;
-        div.textContent = "They won... wtf tho...";
+    };
+    score.textContent = `SCORES: YOU: ${humanScore}, CPU: ${computerScore}`;
+    if (humanScore === 5) {
+        score.textContent = "CONGRATS YOU WIN!(make your next choice to start a new game)";
+        humanScore = 0;
+        computerScore = 0;
+    } else if (computerScore === 5) {
+        score.textContent = "YOU LOSE...(make your next choice to start a new game)";
+        humanScore = 0;
+        computerScore = 0;
     };
 };
 
-function playGame() {
-    let computerChoice = getComputerChoice();
-    console.log(`you chose ${humanChoice} and the cpu chose ${computerChoice}`);
-    playRound(computerChoice, humanChoice);
-    console.log(`SCORES: YOU: ${humanScore}, CPU: ${computerScore}`);
-    
-};
-
 const choiceButtons = document.querySelectorAll(".choiceButton");
-const div = document.querySelector("div");
+const comment = document.querySelector("#comment");
+const score = document.querySelector("#score")
 
 choiceButtons.forEach((choiceButtons) => {
     choiceButtons.addEventListener("click", (event) => {
@@ -48,9 +50,3 @@ choiceButtons.forEach((choiceButtons) => {
 
     });
 });
-
-/*
-for (let i = 0; i <5; ++i) {
-    playGame();
-};
-*/
