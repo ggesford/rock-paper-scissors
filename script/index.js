@@ -14,7 +14,7 @@ function getComputerChoice() {
 
 function playRound(computerChoice, humanChoice) {
     if (computerChoice == humanChoice ) {
-        comment.textContent = "Woah, it's a tie!"
+        comment.textContent = "woah, it's a tie!"
     } else if (computerChoice == "rock" && humanChoice == "paper") {
         comment.textContent = "you win duder, your paper suffocated the enemies rock";
         ++humanScore;
@@ -25,16 +25,18 @@ function playRound(computerChoice, humanChoice) {
         comment.textContent = "your rock crushes their scissors' skull to dust";
         ++humanScore;
     } else {
-        comment.textContent = "They won... wtf tho...";
+        comment.textContent = "they won... wtf tho...";
         ++computerScore;
     };
     score.textContent = `SCORES: YOU: ${humanScore}, CPU: ${computerScore}`;
     if (humanScore === 5) {
-        score.textContent = "CONGRATS YOU WIN!(make your next choice to start a new game)";
+        score.textContent = "CONGRATS YOU WIN!";
+        comment.textContent = "make your next choice to start a new game";
         humanScore = 0;
         computerScore = 0;
     } else if (computerScore === 5) {
-        score.textContent = "YOU LOSE...(make your next choice to start a new game)";
+        score.textContent = "YOU LOSE...";
+        comment.textContent = "make your next choice to start a new game";
         humanScore = 0;
         computerScore = 0;
     };
